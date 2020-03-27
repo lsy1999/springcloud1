@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      routes:
+        - id: service-client
+          uri: lb://SERVICE-CLIENT
+          predicates:
+            - Path=/api/client/**
+          filters:
+            - StripPrefix=1
+server:
+  port: 8200
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
